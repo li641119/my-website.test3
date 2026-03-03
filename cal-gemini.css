@@ -290,16 +290,13 @@ input[type="color"]::-moz-color-swatch {
 @media (max-width: 768px) {
     /* 1. 佈局調整：由橫排變直排 */
     .main-wrapper {
-        flex-direction: column;
-        padding: 10px;
-        gap: 10px;
+        display: block; 
+        padding: 0; /* 手機版貼邊，增加空間感 */
     }
 
     /* 2. 側邊欄：在手機上變成可摺疊或置底 */
     .sidebar {
-        width: auto;
-        order: 2; /* 讓行事曆排在前面，統計排在後面 */
-        padding: 15px;
+        display: none !important; /* 直接隱藏，不佔空間 */
     }
     
     #monthly-stats {
@@ -308,65 +305,67 @@ input[type="color"]::-moz-color-swatch {
 
     /* 3. 行事曆容器：允許橫向滾動 */
     .calendar-container {
-        padding: 8px;
-        order: 1;
-        overflow-x: auto; /* 關鍵：讓一週七天可以橫向滑動 */
+        width: 100vw;
+        height: 100vh;
+        padding: 5px;
+        box-sizing: border-box;
+        border-radius: 0;
+        box-shadow: none;
+        overflow-x: auto; /* 允許橫向捲動 */
+        -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更順暢 */
     }
 
     /* 4. 格線調整：縮小時間欄寬度，確保內容寬度足夠 */
     .schedule-grid {
-        grid-template-columns: 45px repeat(7, 120px); /* 時間欄縮小，每一天固定寬度 */
-        min-width: 885px; /* (45 + 120*7) 確保寬度不縮減，產生橫滑動條 */
+        display: grid;
+        /* 時間欄固定 50px，每天固定 120px */
+        grid-template-columns: 50px repeat(7, 120px); 
+        grid-template-rows: 40px repeat(84, var(--unit-height));
+        min-width: 890px; /* 確保總寬度足夠觸發捲軸 */
     }
 
     .time-column {
-        font-size: 10px;
+        position: sticky;
+        left: 0;
+        background: #f8f9fa; /* 給個背景色，才不會被行程穿透 */
+        z-index: 30;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.05);
     }
 
+    /* 🔥 關鍵：固定上方星期標頭 */
     .day-header {
-        font-size: 11px;
-        position: sticky; /* 讓標題在捲動時固定在最上方 */
+        position: sticky;
         top: 0;
-        z-index: 20;
+        z-index: 40;
     }
 
-    /* 5. 行程方塊調整 */
+    /* 左上角交叉點固定 */
+    .corner {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 50;
+        background: #2c3e50;
+    }
+
+    /* 4. 行程方塊微調 */
     .placed-event {
-        padding: 1px 2px;
+        padding: 2px;
         font-size: 10px;
-    }
-    
-    .placed-event strong {
-        font-size: 11px;
+        border-radius: 2px;
     }
 
-    /* 6. 懸浮按鈕：縮小一點避免擋住內容 */
+    /* 5. 浮動按鈕位置微調 */
     .floating-controls {
-        bottom: 20px;
-        right: 20px;
-        gap: 5px;
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
     }
 
     .floating-controls button {
-        padding: 10px 14px;
+        padding: 10px 12px;
         font-size: 14px;
-    }
-
-    /* 7. 彈窗優化：佔滿寬度 */
-    .modal-content {
-        width: 90%;
-        margin: 20% auto;
-        padding: 20px;
-    }
-
-    .time-row {
-        flex-direction: column; /* 時間輸入在手機上改直排 */
-        gap: 0;
-    }
-
-    .modal-content input, .modal-content select {
-        font-size: 16px; /* 防止 iOS 輸入時自動放大 */
-        padding: 12px;
+        opacity: 0.9;
     }
 }
 
