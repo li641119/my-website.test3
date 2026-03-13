@@ -8,8 +8,20 @@
 </head>
 
 <body>
+<div id="login-container">
+    <div class="auth-box">
+        <h1>桌球教學管理系統</h1>
+        <p>登入以查看課程與時數統計</p>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="電子郵件" required>
+            <input type="password" id="password" placeholder="密碼" required>
+            <button type="submit" class="login-btn">登入</button>
+        </form>
+        <div id="login-error" style="color: red; margin-top: 10px; font-size: 14px;"></div>
+    </div>
+</div>
 
-<div class="main-wrapper">
+<div class="main-wrapper" id="main-app" style="display: none;">
     <div class="sidebar">
         <div style="text-align: center; font-size:large ;font-weight: 700; margin-bottom: 10px;">📊學生每月上課統計</div>
         <div id="monthly-stats">
