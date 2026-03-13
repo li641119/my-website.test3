@@ -9,13 +9,13 @@ import { getAuth, signInWithEmailAndPassword
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCvtWTmqmJt10icRtFRWg58SWf4JE1hXmc",
-    authDomain: "calendar-2026-5ba8e.firebaseapp.com",
-    projectId: "calendar-2026-5ba8e",
-    storageBucket: "calendar-2026-5ba8e.firebasestorage.app",
-    messagingSenderId: "357308222372",
-    appId: "1:357308222372:web:153a95f8f544e6a59ecf31",
-    measurementId: "G-0EP154JP2Z"
+  apiKey: "AIzaSyCvtWTmqmJt10icRtFRWg58SWf4JE1hXmc",
+  authDomain: "calendar-2026-5ba8e.firebaseapp.com",
+  projectId: "calendar-2026-5ba8e",
+  storageBucket: "calendar-2026-5ba8e.firebasestorage.app",
+  messagingSenderId: "357308222372",
+  appId: "1:357308222372:web:153a95f8f544e6a59ecf31",
+  measurementId: "G-0EP154JP2Z"
 };
 
 const app = initializeApp(firebaseConfig);
