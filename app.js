@@ -60,8 +60,8 @@ function startLiveSync(uid) {
     console.log("🔒 啟動個人資料同步...");
     if (unsubscribe) unsubscribe(); // 避免重複監聽
 
-    const q = query(collection(db, "events"), where("studentId", "==", uid));
-
+    const q = query(collection(db, "events"));
+    
     // 使用 onSnapshot 確保資料變動時 UI 會自動更新
     unsubscribe = onSnapshot(q, (snapshot) => {
         const myEvents = [];
